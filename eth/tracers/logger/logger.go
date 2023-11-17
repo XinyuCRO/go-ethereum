@@ -251,6 +251,7 @@ func (l *StructLogger) GetResult() (json.RawMessage, error) {
 	}
 	return json.Marshal(&ExecutionResult{
 		Gas:         l.usedGas,
+		GasUsed:     l.usedGas,
 		Failed:      failed,
 		ReturnValue: returnVal,
 		StructLogs:  formatLogs(l.StructLogs()),
@@ -405,6 +406,7 @@ func (*mdLogger) CaptureTxEnd(restGas uint64) {}
 // execution status, the amount of gas used and the return value
 type ExecutionResult struct {
 	Gas         uint64         `json:"gas"`
+	GasUsed     uint64         `json:"gasUsed"`
 	Failed      bool           `json:"failed"`
 	ReturnValue string         `json:"returnValue"`
 	StructLogs  []StructLogRes `json:"structLogs"`
